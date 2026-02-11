@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-indigo-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/admin/dashboard" class="text-white text-xl font-bold">College Culturals - Admin</a>
+            <div class="flex items-center space-x-4">
+                <span class="text-white" th:text="'Welcome, ' + ${admin.username}"></span>
+                <a href="/admin/logout" class="text-white hover:text-gray-200">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-indigo-600 mb-8">Admin Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="/events/admin/create" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">➕</div>
+                <h3 class="text-xl font-bold mb-2">Create Event</h3>
+                <p class="text-gray-600">Add a new cultural event</p>
+            </a>
+            
+            <a href="/events/admin/list" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">📋</div>
+                <h3 class="text-xl font-bold mb-2">Manage Events</h3>
+                <p class="text-gray-600">View, edit, and delete events</p>
+            </a>
+            
+            <a href="/department-points" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-bold mb-2">Department Points</h3>
+                <p class="text-gray-600">View department standings</p>
+            </a>
+            
+            <a href="/events/admin/list" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">👥</div>
+                <h3 class="text-xl font-bold mb-2">Registrations</h3>
+                <p class="text-gray-600">View participant registrations</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

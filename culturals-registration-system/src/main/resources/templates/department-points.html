@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Points</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-white text-xl font-bold">College Culturals</a>
+            <a href="/" class="text-white">Home</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-purple-600 mb-8 text-center">🏆 Department Leaderboard</h1>
+        
+        <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
+            <div th:if="${!departmentPoints.isEmpty()}">
+                <div th:each="entry, iterStat : ${departmentPoints}" 
+                     class="flex items-center justify-between py-4 border-b"
+                     th:classappend="${iterStat.index < 3} ? 'border-yellow-400' : 'border-gray-200'">
+                    
+                    <div class="flex items-center space-x-4">
+                        <div class="text-3xl font-bold" 
+                             th:classappend="${iterStat.index == 0} ? 'text-yellow-400' : (${iterStat.index == 1} ? 'text-gray-400' : (${iterStat.index == 2} ? 'text-orange-400' : 'text-gray-600'))">
+                            <span th:if="${iterStat.index == 0}">🥇</span>
+                            <span th:if="${iterStat.index == 1}">🥈</span>
+                            <span th:if="${iterStat.index == 2}">🥉</span>
+                            <span th:if="${iterStat.index >= 3}" th:text="${iterStat.index + 1}"></span>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold" th:text="${entry.key}"></h3>
+                            <p class="text-gray-600">Department</p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-purple-600" th:text="${entry.value}"></p>
+                        <p class="text-gray-600">Points</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div th:if="${departmentPoints.isEmpty()}" class="text-center py-8">
+                <p class="text-2xl text-gray-600">No points recorded yet. Events in progress!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

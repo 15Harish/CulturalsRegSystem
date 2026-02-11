@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-CulturalsRegistrationApplication<registration>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.culturals.registration.CulturalsRegistrationApplication",
+            "projectName": "registration",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

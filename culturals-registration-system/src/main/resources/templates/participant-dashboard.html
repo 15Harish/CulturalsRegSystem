@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/participant/dashboard" class="text-white text-xl font-bold">College Culturals</a>
+            <div class="flex items-center space-x-4">
+                <span class="text-white" th:text="'Welcome, ' + ${participant.name}"></span>
+                <a href="/participant/logout" class="text-white hover:text-gray-200">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-purple-600 mb-8">Participant Dashboard</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <a href="/events/available" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">🎭</div>
+                <h3 class="text-xl font-bold mb-2">Available Events</h3>
+                <p class="text-gray-600">Browse and register for events</p>
+            </a>
+            
+            <a href="/events/my-registrations" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">📝</div>
+                <h3 class="text-xl font-bold mb-2">My Registrations</h3>
+                <p class="text-gray-600">View your event registrations</p>
+            </a>
+            
+            <a href="/department-points" class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
+                <div class="text-4xl mb-4">🏆</div>
+                <h3 class="text-xl font-bold mb-2">Department Points</h3>
+                <p class="text-gray-600">Check department standings</p>
+            </a>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold mb-4">Your Profile</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="text-gray-600">Name:</p>
+                    <p class="font-bold" th:text="${participant.name}"></p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Department:</p>
+                    <p class="font-bold" th:text="${participant.department}"></p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Roll Number:</p>
+                    <p class="font-bold" th:text="${participant.rollNumber}"></p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Email:</p>
+                    <p class="font-bold" th:text="${participant.email}"></p>
+                </div>
+                <div>
+                    <p class="text-gray-600">Phone:</p>
+                    <p class="font-bold" th:text="${participant.phoneNumber}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

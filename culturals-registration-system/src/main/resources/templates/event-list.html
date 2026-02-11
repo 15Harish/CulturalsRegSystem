@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-purple-600 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/participant/dashboard" class="text-white text-xl font-bold">College Culturals</a>
+            <a href="/participant/logout" class="text-white">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-purple-600 mb-8">Available Events</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" th:if="${!events.isEmpty()}">
+            <div th:each="event : ${events}" class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-purple-600 mb-2" th:text="${event.eventName}"></h3>
+                    <p class="text-gray-600 mb-4" th:text="${event.description}"></p>
+                    
+                    <div class="space-y-2 mb-4">
+                        <p class="text-sm"><strong>📅 Date:</strong> <span th:text="${#temporals.format(event.eventTime, 'dd MMM yyyy, HH:mm')}"></span></p>
+                        <p class="text-sm"><strong>📍 Venue:</strong> <span th:text="${event.venue}"></span></p>
+                        <p class="text-sm"><strong>⏱️ Duration:</strong> <span th:text="${event.duration} + ' minutes'"></span></p>
+                        <p class="text-sm"><strong>👥 Capacity:</strong> <span th:text="${event.registeredCount} + '/' + ${event.maxParticipants}"></span></p>
+                        <p class="text-sm"><strong>📌 Dress Code:</strong> <span th:text="${event.dressCode}"></span></p>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <a th:href="@{'/events/' + ${event.id}}" 
+                           class="flex-1 bg-purple-600 text-white text-center py-2 rounded hover:bg-purple-700">
+                            View Details
+                        </a>
+                        <a th:href="@{'/events/' + ${event.id} + '/register'}" 
+                           class="flex-1 bg-green-600 text-white text-center py-2 rounded hover:bg-green-700"
+                           th:classappend="${event.isFull()} ? 'opacity-50 cursor-not-allowed' : ''">
+                            <span th:if="${!event.isFull()}">Register</span>
+                            <span th:if="${event.isFull()}">Full</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div th:if="${events.isEmpty()}" class="bg-white rounded-lg shadow-lg p-8 text-center">
+            <p class="text-2xl text-gray-600">No events available at the moment. Check back later!</p>
+        </div>
+    </div>
+</body>
+</html>
