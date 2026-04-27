@@ -1,11 +1,13 @@
 trigger:
-- main
+  branches:
+    include:
+      - master
 
 pool:
-  name: 'new pool'
+  vmImage: 'ubuntu-latest'
 
 steps:
-- checkout: self
-
-- script: echo "Pipeline running successfully"
-  displayName: 'Test Step'
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean install'
