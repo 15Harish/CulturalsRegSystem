@@ -13,4 +13,6 @@ steps:
     options: '-Xmx3072m'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'Path'   # safer for self-hosted agents
+    jdkDirectory: 'C:\Program Files\Java\jdk-17'  # update to your actual JDK path
     
