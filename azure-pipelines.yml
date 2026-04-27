@@ -2,17 +2,18 @@ trigger:
 - main
 
 pool:
-  name: 'new pool'   # your self-hosted agent pool name
+  name: 'new pool'   # your agent pool name
 
 steps:
+- script: echo "Starting Build..."
+  displayName: 'Start Message'
+
 - task: Maven@3
-  displayName: 'Build and Test with Maven'
+  displayName: 'Maven Build'
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean package'
-    options: '-Xmx3072m'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'Path'   # safer for self-hosted agents
-    jdkDirectory: 'C:\Program Files\Java\jdk-17'  # update to your actual JDK path
-    
+    publishJUnitResults: false
+
+- script: echo "Build Completed!"
+  displayName: 'End Message'
